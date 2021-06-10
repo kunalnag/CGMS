@@ -1,0 +1,379 @@
+{% extends "main.html" %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Customer Rating</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- Latest compiled and minified CSS -->
+
+   <link rel="stylesheet" href="templates/assets/css/demo/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="templates/assets/images/favicon.png" />
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<style>
+ hr {
+            width: 100%;
+            margin: 10px;
+            background-color:#FFFFFF;
+            color:white;
+            opacity:0.9;
+            padding: 1px;
+
+        }
+  .au-btn {
+    line-height: 45px;
+    padding: 0 35px;
+    text-transform: uppercase;
+    color: #fff;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin-left:15px;
+
+}
+
+.au-btn:hover {
+    color: #fff;
+    background: #3868cd;
+}
+
+.au-btn--blue2 {
+    background: #00aced;
+}
+
+.au-btn--blue2:hover {
+    background: #00a2e3;
+}
+
+.au-btn--block {
+    display: block;
+    width: 100%;
+}
+
+
+.au-btn--blue {
+    background: #4272d7;
+}
+
+.au-btn--green {
+    background: #63c76a;
+}
+
+.au-btn--green:hover {
+    background: #59bd60;
+}
+
+
+.au-btn-filter {
+    font-size: 14px;
+    color: white;
+    background: #63c76a;;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.03);
+    -moz-box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.03);
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.03);
+    padding: 0 15px;
+    line-height: 40px;
+    text-transform: capitalize;
+}
+.au-btn-filter:hover{
+background:#59bd60;;}
+
+.au-btn-filter i {
+    margin-right: 5px;
+}
+
+.au-btn--small {
+
+    padding: 0 20px;
+    line-height: 40px;
+    font-size: 14px;
+}
+.top{
+margin-top:5px;
+margin-bottom:18px;
+height:70px;
+    padding-top:5px;
+    padding-left:8px;
+    padding-bottom:5px;
+    color:white;
+    background-color:#666;
+    color: black;
+  }
+
+
+.container {
+height:500px;
+background-color:white;
+float:left;
+}
+
+.filterDiv {
+  float: left;
+padding-left:240px;
+
+  width: 1000px;
+  height:800px;
+
+  text-align: center;
+  margin: 2px;
+  display: none; /* Hidden by default */
+}
+
+/* The "show" class is added to the filtered elements */
+.show {
+  display: block;
+  margin:0;
+  padding:50;
+
+}
+
+/* Style the buttons */
+.btn {
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  background-color: lightblue;
+  cursor: pointer;
+}
+.btn1 {
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  background-color: #ADDFFF;
+  cursor: pointer;
+}
+.btn1.active {
+  background-color: #666;
+  color: white;
+}
+
+.btn1:hover {
+  background-color: #98AFC7;
+}
+
+/* Add a light grey background on mouse-over */
+.btn:hover {
+  background-color: #98AFC7;
+}
+
+/* Add a dark background to the active button */
+.btn.active {
+  background-color: #666;
+  color: white;
+}
+.leftContent {
+            height: 100%;
+            width: 48%;
+            float: left;
+            overflow-x:hidden;
+            overflow-y:hidden;
+        }
+  .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            height: 410px;
+        }
+
+</style>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+</head>
+
+<body class="container-fluid" style="width:100%;height:100%;overflow-x:hidden;
+            overflow-y:hidden;">
+            <div class="top" style="background-color:#ececec;">
+              <h2 style="margin-left:0; margin-top:9px; color:black"><b>Customer Rating</h2>
+        </div>
+  <hr>
+  <div class="row" style="background-color:#ececec;">
+        <div id="myBtnContainer"  style="margin-left: 30px;">
+      <button class="btn" onclick="filterSelection('day')"> Today</button>
+      <button class="btn" onclick="filterSelection('month')"> Monthly</button>
+      <button class="btn" onclick="filterSelection('year')"> Yearly</button>
+  </div>
+  </div>
+  <hr>
+  <div class="card">
+      <h3 style="text-align:center;"><b>Customer Rating</b> </h3>
+      <div class="filterDiv day" style="width:500vh; height:200vh;">
+            <div style="width:40vw; height:50vh;">
+                <canvas id="chart" ></canvas>
+            </div>
+            <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+            <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
+      </div>
+      
+      <div class="filterDiv month" style="width:500vh; height:200vh;">
+
+          <div style="width:40vw; height:50vh;" >
+            <canvas id="chart1"></canvas>
+          </div>
+
+      </div>
+    <div class="filterDiv year" style="width:500vh; height:200vh;">
+          <div style="width:40vw; height:50vh;" >
+            <canvas id="chart2"></canvas>
+          </div>
+      </div>
+  </div>
+  
+
+  <!--<div class="row">
+    <div class="col-md-6">
+      <canvas id="myBarChart" style="margin:0;height:80px;"></canvas>
+      <h3>Average Resolution Time split by Priority </h3>
+
+    </div>
+    <div class="col-md-6">
+      <canvas id="chart"></canvas>
+      <h3>Average Resolution Time split by Type </h3>
+    </div>
+  </div> -->
+
+<script type="text/javascript">
+filterSelection("day")
+function filterSelection(c) {
+  var x, i;
+  x = document.getElementsByClassName("filterDiv");
+  if (c == "all") c = "";
+  // Add the "show" class (display:block) to the filtered elements, and remove the "show" class from the elements that are not selected
+  for (i = 0; i < x.length; i++) {
+    w3RemoveClass(x[i], "show");
+    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+  }
+}
+
+// Show filtered elements
+function w3AddClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    if (arr1.indexOf(arr2[i]) == -1) {
+      element.className += " " + arr2[i];
+    }
+  }
+}
+
+// Hide elements that are not selected
+function w3RemoveClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    while (arr1.indexOf(arr2[i]) > -1) {
+      arr1.splice(arr1.indexOf(arr2[i]), 1);
+    }
+  }
+  element.className = arr1.join(" ");
+}
+
+// Add active class to the current control button (highlight it)
+var btnContainer = document.getElementById("myBtnContainer");
+var btns = btnContainer.getElementsByClassName("btn");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
+</script>
+        <script type="text/javascript">
+            let ctx = document.getElementById("chart").getContext("2d");
+            var defaultdata=['{{Happy_today}}', '{{Neutral_today}}', '{{Sad_today}}']
+            let chart = new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: ["Happy","Neutral","Sad"],
+                    datasets: [{
+                        label: "Customer Rating",
+                        backgroundColor: [
+                        "green", "yellow","red"
+                        ],
+                        borderColor: "#417690",
+                        //data: [36900, 21700, 17300]
+                        data: defaultdata,
+                    }]
+                },
+                options: {
+                    title: {
+                        text: "",
+                        display: true
+                    }
+                }
+            });
+        </script>
+        <script type="text/javascript">
+            let ctx1 = document.getElementById("chart1").getContext("2d");
+            var defaultdata=['{{Happy_monthly}}', '{{Neutral_monthly}}', '{{Sad_monthly}}']
+            let chart1 = new Chart(ctx1, {
+                type: "bar",
+                data: {
+                    labels: ["Happy","Neutral","Sad"],
+                    datasets: [{
+                        label: "Customer Rating",
+                        backgroundColor: [
+                        "green", "yellow","red"
+                        ],
+                        borderColor: "#417690",
+                        //data: [34900, 28700, 27300]
+                        data: defaultdata,
+                    }]
+                },
+                options: {
+                    title: {
+                        text: "",
+                        display: true
+                    }
+                }
+            });
+        </script>
+        <script type="text/javascript">
+            let ctx2 = document.getElementById("chart2").getContext("2d");
+            var defaultdata=['{{Happy_yearly}}', '{{Neutral_yearly}}', '{{Sad_yearly}}']
+            let chart2 = new Chart(ctx2, {
+                type: "bar",
+                data: {
+                    labels: ["Happy","Neutral","Sad"],
+                    datasets: [{
+                        label: "Customer Rating",
+                        backgroundColor: [
+                        "green", "yellow","red"
+                        ],
+                        borderColor: "#417690",
+                        //data: [36900, 28700, 10300]
+                        data: defaultdata,
+                    }]
+                },
+                options: {
+                    title: {
+                        text: "",
+                        display: true
+                    }
+                }
+            });
+        </script>
+        
+
+</body>
+
+</html>
+  {% endblock %}

@@ -1,0 +1,151 @@
+{% extends "main.html" %}{% block content %}
+<html>
+<head>
+    <title> Information Provider</title>
+    <style>
+        .editor {
+            margin-top: 70px;
+            width: 95%;
+            height: 95%;
+            margin: 10px;
+            font-size: 16px;
+        }
+        
+        .dropbtn {
+            background-position: 10px 10px;
+            width: 35%;
+            margin-top: 10px;
+            background-color: lightblue;
+            color: gray;
+            padding: 12px 20px 12px 40px;
+            font-size: 13px;
+            border: 1px solid white;
+            border-radius: 10px;
+            margin-bottom: auto;
+        }
+        
+        #myInput {
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            width: 35%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid gray;
+            border-radius: 10px;
+        }
+        
+        input[type=submit] {
+            background-color: lightblue;
+            color: black;
+            margin-top: 10px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        input[type=reset] {
+            background-color: lightblue;
+            color: black;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        input[type=button] {
+            float: right;
+            margin-top: 10px;
+            background-color: lightblue;
+            color: black;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            align-content: center;
+        }
+        
+        .titleclass {
+            margin-top: 20px;
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            width: 35%;
+            font-size: 13px;
+            margin-top: 10px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid white;
+            border-radius: 10px;
+            background-color: lightblue;
+            color: black;
+        }
+        
+        .card {
+            align-content: center;
+            padding: 20px;
+            font-size: 16px;
+            color: gray;
+        }
+        
+        .input_wrap dropbtn [option=one] {
+            text-decoration-color: darkgoldenrod;
+        }
+        
+        .card dropbtn two {
+            color: red;
+        }
+        .cancelbtn{
+            width: 100px;
+            height: 40px;
+            font-size: 13px;
+            background-color: lightblue;
+            border: 1px;
+            align-items: right;
+        }
+    </style>
+</head>
+
+    <body>
+        <form action="" method="POST">
+        {% csrf_token %}
+
+            <div class='card'>
+                <div class="input_wrap">
+                    <select class="dropbtn" name="category" requried ">
+                        <option class="0">Category</option>
+                        <option class="one" style="color: orange;">Alert</option>
+                        <option class="two" style="color: red;">Warning</option>
+                    </select>
+                </div>
+                <input type="text" class="titleclass" name="title" placeholder="Title" >
+                <br><br>
+                <br> <label> Description </label><br>
+                <div class="editor"  >
+
+                    <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js">
+                    </script>
+                    <textarea class="titleclass" name="description" style="width: 50%;"">
+  
+                    </textarea>
+
+                    <script>
+                        CKEDITOR.replace('description');
+                    </script>
+                    <br><br>
+                    <a href="{% url 'info' %}">
+                    <input  type="submit" value="Publish">
+                    {% comment %} </a>
+                     <a href="{% url 'infosend' %}">
+                    <input type="button" value="Publish">
+                    </a> {% endcomment %}
+                    <a href="{% url 'cancel' %}">
+                    <input type="button" value="Cancel"/>
+                    </a>   
+                    
+                </div>
+            </div>
+        </form>
+
+    </body>
+
+</html>
+{% endblock %}

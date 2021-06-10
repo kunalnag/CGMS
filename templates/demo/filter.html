@@ -1,0 +1,77 @@
+<style>
+    <link rel="stylesheet" href="templates/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="templates/assets/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="templates/assets/vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="templates/assets/vendors/jvectormap/jquery-jvectormap.css">
+    <!-- End plugin css for this page -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="templates/assets/css/demo/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="templates/assets/images/favicon.png" />
+</style>
+<div class="col-md-3">
+    <div class="grid support">
+        <div class="grid-body">
+            <h2>FILTER</h2>
+
+            <hr>
+
+            <ul>
+
+                <li><strong>Agent</strong></a>
+                </li>
+                <div class="btn-group">
+                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"> Any <span class="caret"></span></button>
+                    <ul class="dropdown-menu fa-padding" role="menu">
+                        {% for i in executive %}
+                        <li><a href="{% url 'ExecutiveFilter' i.id%}"><i class="fa"></i> {{i.executive_name}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <hr>
+
+
+                <li><strong>Status</strong></a>
+                </li>
+                <div class="btn-group">
+                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"> Open <span class="caret"></span></button>
+                    <ul class="dropdown-menu fa-padding" role="menu">
+                        {% for i in status %}
+                        <li><a href="{% url 'StatusFilter' i.status%}"><i class="fa"></i> {{i.status}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <hr>
+
+                <li><strong>Priority</strong></a>
+                </li>
+                <div class="btn-group">
+                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"> High <span class="caret"></span></button>
+                    <ul class="dropdown-menu fa-padding" role="menu">
+                        {% for i in priority %}
+                        <li><a href="{% url 'PriorityFilter' i.priority%}"><i class="fa"></i> {{i.priority}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <hr>
+
+                <li><strong>Source</strong> </a>
+                </li>
+                <div class="btn-group">
+                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"> Email <span class="caret"></span></button>
+                    <ul class="dropdown-menu fa-padding" role="menu">
+                        {% for i in source %}
+                        <li><a href="{% url 'SourceFilter' i.source%}"><i class="fa"></i> {{i.source}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                
+            </ul>
+
+            <hr>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--  This file has been downloaded from bootdey.com    @bootdey on twitter -->
+    <!--  All snippets are MIT license http://bootdey.com/license -->
+    <title>Reply Ticket</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+    	body{margin-top:20px;
+            padding-top: 5%;
+            background-color: rgba(0, 0, 0, 0.7);
+}
+
+
+.inbox .inbox-menu ul {
+    margin-top: 30px;
+    padding: 0;
+    list-style: none
+}
+
+.inbox .inbox-menu ul li {
+    height: 30px;
+    padding: 5px 15px;
+    position: relative
+}
+
+.inbox .inbox-menu ul li:hover,
+.inbox .inbox-menu ul li.active {
+    background: #e4e5e6
+}
+
+.inbox .inbox-menu ul li.title {
+    margin: 20px 0 -5px 0;
+    text-transform: uppercase;
+    font-size: 10px;
+    color: #d1d4d7
+}
+
+.inbox .inbox-menu ul li.title:hover {
+    background: 0 0
+}
+
+.inbox .inbox-menu ul li a {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    color: #3d3f42
+}
+
+.inbox .inbox-menu ul li a i {
+    margin-right: 10px
+}
+
+.inbox .inbox-menu ul li a .label {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    display: block;
+    min-width: 14px;
+    height: 14px;
+    padding: 2px
+}
+
+.inbox ul.messages-list {
+    list-style: none;
+    margin: 15px -15px 0 -15px;
+    padding: 15px 15px 0 15px;
+    border-top: 1px solid #d1d4d7
+}
+
+.inbox ul.messages-list li {
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    padding: 10px
+}
+
+.inbox ul.messages-list li a {
+    color: #3d3f42
+}
+
+.inbox ul.messages-list li a:hover {
+    text-decoration: none
+}
+
+.inbox ul.messages-list li.unread .header,
+.inbox ul.messages-list li.unread .title {
+    font-weight: 700
+}
+
+.inbox ul.messages-list li:hover {
+    background: #e4e5e6;
+    border: 1px solid #d1d4d7;
+    padding: 9px
+}
+
+.inbox ul.messages-list li:hover .action {
+    color: #d1d4d7
+}
+
+.inbox ul.messages-list li .header {
+    margin: 0 0 5px 0
+}
+
+.inbox ul.messages-list li .header .from {
+    width: 49.9%;
+    white-space: nowrap;
+    overflow: hidden!important;
+    text-overflow: ellipsis
+}
+
+.inbox ul.messages-list li .header .date {
+    width: 50%;
+    text-align: right;
+    float: right
+}
+
+.inbox ul.messages-list li .title {
+    margin: 0 0 5px 0;
+    white-space: nowrap;
+    overflow: hidden!important;
+    text-overflow: ellipsis
+}
+
+.inbox ul.messages-list li .description {
+    font-size: 12px;
+    padding-left: 29px
+}
+
+.inbox ul.messages-list li .action {
+    display: inline-block;
+    width: 16px;
+    text-align: center;
+    margin-right: 10px;
+    color: #d1d4d7
+}
+
+.inbox ul.messages-list li .action .fa-check-square-o {
+    margin: 0 -1px 0 1px
+}
+
+.inbox ul.messages-list li .action .fa-square {
+    float: left;
+    margin-top: -16px;
+    margin-left: 4px;
+    font-size: 11px;
+    color: #fff
+}
+
+.inbox ul.messages-list li .action .fa-star.bg {
+    float: left;
+    margin-top: -16px;
+    margin-left: 3px;
+    font-size: 12px;
+    color: #fff
+}
+
+.inbox .message .message-title {
+    margin-top: 30px;
+    padding-top: 10px;
+    font-weight: 700;
+    font-size: 14px
+}
+
+.inbox .message .header {
+    margin: 20px 0 30px 0;
+    padding: 10px 0 10px 0;
+    border-top: 1px solid #d1d4d7;
+    border-bottom: 1px solid #d1d4d7
+}
+
+.inbox .message .header .avatar {
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    height: 34px;
+    width: 34px;
+    float: left;
+    margin-right: 10px
+}
+
+.inbox .message .header i {
+    margin-top: 1px
+}
+
+.inbox .message .header .from {
+    display: inline-block;
+    width: 50%;
+    font-size: 12px;
+    margin-top: -2px;
+    color: #d1d4d7
+}
+
+.inbox .message .header .from span {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #3d3f42
+}
+
+.inbox .message .header .date {
+    display: inline-block;
+    width: 29%;
+    text-align: right;
+    float: none;
+    font-size: 12px;
+    margin-top: 18px
+}
+
+.inbox .message .attachments {
+    border-top: 3px solid #e4e5e6;
+    border-bottom: 3px solid #e4e5e6;
+    padding: 10px 0;
+    margin-bottom: 20px;
+    font-size: 12px
+}
+
+.inbox .message .attachments ul {
+    list-style: none;
+    margin: 0 0 0 -40px
+}
+
+.inbox .message .attachments ul li {
+    margin: 10px 0
+}
+
+.inbox .message .attachments ul li .label {
+    padding: 2px 4px
+}
+
+.inbox .message .attachments ul li span.quickMenu {
+    float: right;
+    text-align: right
+}
+
+.inbox .message .attachments ul li span.quickMenu .fa {
+    padding: 5px 0 5px 25px;
+    font-size: 14px;
+    margin: -2px 0 0 5px;
+    color: #d1d4d7
+}
+
+    </style>
+</head>
+<body>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://select2.github.io/dist/css/select2.min.css" rel="stylesheet">
+<script src="https://select2.github.io/dist/js/select2.full.js"></script>
+<div class="container">
+<div class="row inbox">
+	<div class="col-md-3">
+		<div class="panel panel-default">
+			<div class="panel-body inbox-menu">						
+				<ul>
+					<li style="font-size:20px;" class="title">
+						Canned Reply
+					</li>
+					<hr>
+					<div class="card-body">
+                        
+                    <p onclick="copy(this)"> Hi,
+
+							Thanks for your note. I’m not sure I follow what you’re saying, any chance you could provide a little more detail? A screenshot would be super helpful as well.
+							
+							I’ll do my best to help.
+							
+							Thanks!
+						</p>
+						<hr>
+					<p onclick="copy(this)">Hi,
+
+							Thanks for reaching out. I’m so sorry, I definitely understand your concern and I’m escalating your issue so that someone can take a closer look at what’s going on right away.
+							
+							Please standby and one of my teammates will get back to you with more details ASAP.
+							
+							Best.
+						</p>
+                        <hr>
+					</div>
+				</ul>
+			</div>	
+		</div>
+	</div><!--/.col-->
+	<div class="col-md-9" >
+		<div class="panel panel-default">
+			<div class="panel-body message">
+				<p class="text-center"><b>Reply Message</p>
+				<form class="form-horizontal" role="form">
+					<div class="form-group">
+				    	<label for="to" class="col-sm-1 control-label">To:</label>
+				    	<div class="col-sm-11">
+                            <label class="col-sm-1 control-label">swtdwngn@gmail.com</label>
+                        </div>
+				  	</div>				  
+				</form>
+				
+				<div class="col-sm-11 col-sm-offset-1">
+					
+					<div class="btn-toolbar" role="toolbar">
+						
+						<div class="btn-group">
+						  	<button class="btn btn-default"><span class="fa fa-bold"></span></button>
+						  	<button class="btn btn-default"><span class="fa fa-italic"></span></button>
+							<button class="btn btn-default"><span class="fa fa-underline"></span></button>
+						</div>
+
+						<div class="btn-group">
+						  	<button class="btn btn-default"><span class="fa fa-align-left"></span></button>
+						  	<button class="btn btn-default"><span class="fa fa-align-right"></span></button>
+						  	<button class="btn btn-default"><span class="fa fa-align-center"></span></button>
+							<button class="btn btn-default"><span class="fa fa-align-justify"></span></button>
+						</div>
+						
+						<div class="btn-group">
+						  	<button class="btn btn-default"><span class="fa fa-indent"></span></button>
+						  	<button class="btn btn-default"><span class="fa fa-outdent"></span></button>
+						</div>
+						
+						<div class="btn-group">
+						  	<button class="btn btn-default"><span class="fa fa-list-ul"></span></button>
+						  	<button class="btn btn-default"><span class="fa fa-list-ol"></span></button>
+						</div>
+						<button class="btn btn-default"><span class="fa fa-trash-o"></span></button>	
+						<button class="btn btn-default"><span class="fa fa-paperclip"></span></button>
+					</div>
+					<br>	
+					
+					<div class="form-group">
+						<textarea class="form-control" id="message" name="body" rows="12" placeholder="Click here to reply"></textarea>
+					</div>
+					
+					<div class="form-group">	
+						<button type="submit" class="btn btn-success" onclick="window.location.href='TicketInfo'">Send</button>
+						<button type="submit" class="btn btn-danger" onclick="window.location.href='TicketInfo'">Discard</button>
+					</div>
+				</div>	
+			</div>	
+		</div>	
+	</div><!--/.col-->		
+</div>
+</div>
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+    $("#to, #cc, #bcc").select2({tags:["team@bm.com", "ceo@bm.com", "cto@bm.com"]});
+ });
+</script>
+<script>   
+    function copy(that){
+        var inp =document.createElement('input');
+        document.body.appendChild(inp)
+        inp.value =that.textContent
+        inp.select();
+        document.execCommand('copy',false);
+        inp.remove();
+        }
+    </script>
+</body>
+</html>

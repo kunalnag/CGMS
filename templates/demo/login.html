@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>User LogIn</title>
+    <style>
+        .er {
+            color: red;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            box-sizing: border-box;
+        }
+        
+        .full-page {
+            height: 100%;
+            width: 100%;
+            padding: 100px;
+            background-position: center;
+            background-size: cover;
+            position: absolute;
+            background-color: HoneyDew;
+        }
+        
+        #login-page {
+            display: none;
+        }
+        
+        .form-box {
+            background-color: #1E90FF;
+            width: 380px;
+            height: 450px;
+            position: relative;
+            margin: 2% auto;
+            margin-top: -30px;
+            border: 3px solid Gray;
+            border-radius: 10px;
+            padding: 13px;
+            overflow: hidden;
+        }
+        
+        .button-box {
+            width: 220px;
+            margin: 35px auto;
+            position: relative;
+            box-shadow: 0 0 20px 0.9px;
+            border-radius: 30px;
+        }
+        
+        .toggle-btn {
+            padding: 10px 30px;
+            cursor: pointer;
+            background: transparent;
+            border: 0;
+            outline: none;
+            position: relative;
+        }
+        
+        #btn {
+            top: 0;
+            left: 0;
+            position: absolute;
+            width: 110px;
+            height: 100%;
+            background: #00FF7F;
+            border-radius: 30px;
+            transition: .5s;
+        }
+        
+        .input-group-login {
+            top: 110px;
+            position: absolute;
+            width: 280px;
+            transition: .5s;
+        }
+        
+        .input-group-Admin {
+            top: 150px;
+            position: absolute;
+            width: 280px;
+            transition: .5s;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border-left: 0;
+            border-top: 0;
+            border-right: 0;
+            border-radius: 10px;
+            border-bottom: 1px solid #999;
+            outline: none;
+            font-size: 15px;
+        }
+        
+        .reset_password {
+            margin: 10px;
+            padding-bottom: 10px;
+            color: rgb(248, 248, 248);
+            line-height: 1.8;
+        }
+        
+        .submit-btn {
+            width: 80%;
+            padding: 10px 30px;
+            margin: 15px;
+            cursor: pointer;
+            display: block;
+            margin: auto;
+            background: #00FF7F;
+            border: 20%;
+            outline: none;
+            border-radius: 30px;
+            box-shadow: 0 0 20px 0.9px;
+            text-decoration: none;
+            color: black;
+        }
+        
+        .check-box {
+            margin: 10px 10px 30px 10px;
+        }
+        
+        hr {
+            width: 100%;
+            margin: 10px;
+            padding: 1px;
+            border-radius: 10px;
+        }
+        
+        .Register {
+            width: 80%;
+            box-shadow: 0 0 20px 0.9px;
+            padding: 10px 30px;
+            margin: 15px;
+            cursor: pointer;
+            display: block;
+            margin: auto;
+            background: #00FF7F;
+            border: 20%;
+            outline: none;
+            border-radius: 30px;
+            text-decoration: none;
+            text-align: center;
+            color: black;
+        }
+        
+        #login {
+            left: 50px;
+        }
+        
+        #login input {
+            color: black;
+            font-size: 16;
+        }
+        
+        #Admin {
+            left: 450px;
+        }
+        
+        #Admin input {
+            color: black;
+            font-size: 16;
+        }
+        
+        #id_username,
+        #id_password {
+            height: 30px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="full-page">
+
+        <div id='login-form' class='login-page'>
+            <div class="form-box">
+                <div class='button-box' style="background-color:#00FF7F ;">
+                    <!-- <div id='btn'></div> -->
+                    {% comment %}
+                    <h3> @CGMS</h3> {% endcomment %}
+                    <center>
+                        <button type='button' onclick='login()' class='toggle-btn'>Executive</button>
+                    </center>
+                </div>
+                <form method="POST" id='login' class='input-group-login'>
+                    {% csrf_token %} {% comment %} {% for fm in form %} {% endcomment %}
+                    <center>
+
+                        <input type='text' id='id_username' name="username" class='{{form.username}}' placeholder=' Username' required>
+                        <br>
+                        <br>
+                        <input type='password' id='id_password' name="password" class='{{form.password}}' placeholder=' Password' required>
+                        <br>
+                        <br>
+                    </center>
+                    {% comment %} {{fm.errors|striptags}} <br><br> {% endcomment %} {% comment %} {% endfor %} {% endcomment %}
+                    <input type='checkbox' class='check-box'><span>Remember Password</span><br>
+
+                    <a href=" /reset_password " class='reset_password'>Reset Your Password</a> {% comment %} <a href=" /forgot " class='forgot'>Forgot your password?</a> {% endcomment %}
+                    <br>
+                    <br>
+                    <!-- <a href="https://docs.djangoproject.com/en/3.1/ref/templates/language/ " target="_blank "><button class='submit-btn'>Log in</button></a> -->
+                    <!-- <a href="{% url 'dashboard' %} " target="_blank " class='submit-btn'>
+                        <center> Log in </center>
+                    </a> -->
+                    <input type="submit" class="submit-btn" value="Login ">
+
+                    <hr>
+                    <a href="/register " class='Register'>New User? Sign Up</a> {% for message in messages %}
+                    <p id="messages">
+                        {{message}}
+                    </p>
+                    {% endfor %} {% if form.non_field_errors %} {% for error in form.non_field_errors %}
+
+                    <p class="er">{{error}}</p>
+                    {% endfor %} {% endif %} </form>
+                <form id='Admin' class='input-group-Admin'>
+
+                    <input type='username' class='input-field' placeholder=' Username' required>
+                    <input type='password' class='input-field' placeholder=' Password' required> <br>
+                    <br>
+
+                    <a href=" /reset_password " class='reset_password'>Reset Your Password</a>
+                    <br>
+                    <br>
+                    <a href="{% url 'profile' %} " target="_blank " class='submit-btn'>
+
+                    </a>
+
+                </form>
+            </div>
+
+        </div>
+        <script>
+            var x = document.getElementById('login');
+            var y = document.getElementById('Admin');
+            var z = document.getElementById('btn');
+
+            function Admin() {
+                x.style.left = '-400px';
+                y.style.left = '50px';
+                z.style.left = '110px';
+            }
+
+            function login() {
+                x.style.left = '50px';
+                y.style.left = '450px';
+                z.style.left = '0px';
+            }
+        </script>
+        <script>
+            var modal = document.getElementById('login-form');
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "block ";
+                }
+            }
+        </script>
+</body>
+
+</html>

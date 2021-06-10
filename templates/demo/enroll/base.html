@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TimeSheet Summary</title>
+    <link rel="stylesheet" href="{% static 'enroll/css/bootstrap.css' %}">
+</head>
+<body style="background-color:HoneyDew">
+<nav class="navbar navbar-expand-lg navbar-light bg-Dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Customer Grievance System</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Reports</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav> 
+<div>
+<a href="show.html"></a>
+</div>   
+{% block content %} {% endblock content %}
+    
+<script src="{% static 'enroll/js/jquery.js' %}"></script>    
+<script src="{% static 'enroll/js/proper.js' %}"></script>
+<script src="{% static 'enroll/js/bootstrap.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,526 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <base href="/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% block title%}
+    {% endblock %}
+
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="templates/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="templates/assets/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="templates/assets/vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="templates/assets/vendors/jvectormap/jquery-jvectormap.css">
+    <!-- End plugin css for this page -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="templates/assets/css/demo/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="templates/assets/images/favicon.png" />
+
+
+
+
+</head>
+
+<body>
+    <script src="templates/assets/js/preloader.js"></script>
+    <div class="body-wrapper">
+        <!-- partial:partials/_sidebar.html -->
+        <aside class="mdc-drawer mdc-drawer--dismissible mdc-drawer--open">
+            <div class="mdc-drawer__header">
+                <a href="{% url 'dashboard' %}" class="brand-logo">
+                    <center> <img src="templates/assets/images/favicon.png" width="60" height="60" alt="logo">
+
+                        <div class="text-white">
+                            <hr>
+                            <h4>
+                                Customer Support
+                            </h4>
+                            <hr>
+                        </div>
+                    </center>
+                </a>
+            </div>
+            <div class="mdc-drawer__content">
+                <div class="mdc-list-group">
+                    <nav class="mdc-list mdc-drawer-menu">
+                        <div class="mdc-list-item mdc-drawer-item">
+                            <a class="mdc-drawer-link" href="{% url 'dashboard' %}">
+                                <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">home</i> Dashboard
+                            </a>
+                        </div>
+                        <div class="mdc-list-item mdc-drawer-item">
+                            <a class="mdc-drawer-link" href="{% url 'ticketinbox' %}" target="_blank ">
+                                <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">track_changes</i> Ticket Inbox
+                            </a>
+                        </div>
+                        <div class="mdc-list-item mdc-drawer-item">
+                            <a class="mdc-drawer-link" href="{% url 'Reportsapp' %}" target="_blank ">
+                                <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">dashboard</i> Reports
+                            </a>
+                        </div>
+                        <div class="mdc-list-item mdc-drawer-item">
+                            <a class="mdc-drawer-link" href="{% url 'Charts' %}" target="_blank ">
+                                <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">assessment</i> Charts
+                            </a>
+                        </div>
+                        <div class="mdc-list-item mdc-drawer-item">
+                            <a class="mdc-drawer-link" href="{% url 'info' %}" target="_blank ">
+                                <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">pages</i> Information
+                            </a>
+                        </div>
+                        <div class="mdc-list-item mdc-drawer-item">
+                            <a class="mdc-drawer-link " href="{% url 'documentation' %}" target="_blank ">
+                                <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">description</i> Documentation
+                            </a>
+                        </div>
+                    </nav>
+                </div>
+                <div class="profile-actions ">
+                    <a href="javascript:; ">Settings</a>
+                    <span class="divider "></span>
+                    <a href="{% url 'user_logout' %} ">Logout</a>
+                </div>
+            </div>
+        </aside>
+        <!-- partial -->
+        <div class="main-wrapper mdc-drawer-app-content ">
+            <!-- partial:partials/_navbar.html -->
+            <header class="mdc-top-app-bar ">
+                <div class="mdc-top-app-bar__row ">
+                    <div class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start ">
+                        <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button sidebar-toggler ">menu</button>
+
+                        <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon search-text-field d-none d-md-flex ">
+                            <i class="material-icons mdc-text-field__icon ">search</i>
+                            <input class="mdc-text-field__input " id="text-field-hero-input ">
+                            <div class="mdc-notched-outline ">
+                                <div class="mdc-notched-outline__leading "></div>
+                                <div class="mdc-notched-outline__notch ">
+                                    <label for="text-field-hero-input " class="mdc-floating-label ">Search..</label>
+                                </div>
+                                <div class="mdc-notched-outline__trailing "></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end mdc-top-app-bar__section-right ">
+                        <div class="menu-button-container menu-profile d-none d-md-block ">
+                            <button class="mdc-button mdc-menu-button ">
+                                <span class="d-flex align-items-center ">
+                                    <span class="figure ">
+                                        <img src="templates/assets/images/faces/face11.png " alt="user " class="user ">
+                                    </span>
+                                    <span class="user-name ">{{name}}</span>
+                                </span>
+                            </button>
+                            <div class="mdc-menu mdc-menu-surface " tabindex="-1 ">
+                                <ul class="mdc-list " role="menu " aria-hidden="true " aria-orientation="vertical ">
+                                    <li class="mdc-list-item " role="menuitem ">
+                                        <div class="item-thumbnail item-thumbnail-icon-only ">
+                                            <i class="mdi mdi-account text-primary "></i>
+                                        </div>
+                                        <div class="item-content d-flex align-items-start flex-column justify-content-center ">
+
+                                            <a href="{% url 'profile' %} " target="_blank ">
+
+
+                                                <h6 class="item-subject font-weight-normal ">
+                                                    View profile</h6>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <!-- <li class="mdc-list-item " role="menuitem ">
+                                        <div class="item-thumbnail item-thumbnail-icon-only ">
+                                            <i class="mdi mdi-account-edit-outline text-primary "></i>
+                                        </div>
+                                        <div class="item-content d-flex align-items-start flex-column justify-content-center ">
+                                            <a href="{% url 'editprofile' %} " target="_blank ">
+                                                <h6 class="item-subject font-weight-normal ">Edit Profile</h6>
+                                            </a>
+
+                                        </div>
+                                    </li> -->
+                                    <li class="mdc-list-item " role="menuitem ">
+                                        <div class="item-thumbnail item-thumbnail-icon-only ">
+                                            <i class="mdi mdi-settings-outline text-primary "></i>
+                                        </div>
+                                        <div class="item-content d-flex align-items-start flex-column justify-content-center ">
+                                            <a href="{% url 'user_logout' %} ">
+                                                <h6 class="item-subject font-weight-normal ">Logout</h6>
+                                            </a>
+
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="divider d-none d-md-block "></div>
+                        <div class="menu-button-container d-none d-md-block ">
+                            <button class="mdc-button mdc-menu-button ">
+                                <i class="mdi mdi-settings "></i>
+                            </button>
+                            <div class="mdc-menu mdc-menu-surface " tabindex="-1 ">
+                                <ul class="mdc-list " role="menu " aria-hidden="true " aria-orientation="vertical ">
+                                    <li class="mdc-list-item " role="menuitem ">
+                                        <div class="item-thumbnail item-thumbnail-icon-only ">
+                                            <i class="mdi mdi-alert-circle-outline text-primary "></i>
+                                        </div>
+                                        <div class="item-content d-flex align-items-start flex-column justify-content-center ">
+                                            <h6 class="item-subject font-weight-normal ">Settings</h6>
+                                        </div>
+                                    </li>
+                                    <li class="mdc-list-item " role="menuitem ">
+                                        <div class="item-thumbnail item-thumbnail-icon-only ">
+                                            <i class="mdi mdi-progress-download text-primary "></i>
+                                        </div>
+                                        <div class="item-content d-flex align-items-start flex-column justify-content-center ">
+                                            <h6 class="item-subject font-weight-normal ">Update</h6>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="menu-button-container ">
+                            <button class="mdc-button mdc-menu-button ">
+                                <i class="mdi mdi-bell "></i>
+                            </button>
+                            <div class="mdc-menu mdc-menu-surface " tabindex="-1 ">
+                                <h6 class="title "> <i class="mdi mdi-bell-outline mr-2 tx-16 "></i> Notifications</h6>
+                                <ul class="mdc-list " role="menu " aria-hidden="true " aria-orientation="vertical ">
+                                    <li class="mdc-list-item " role="menuitem ">
+                                        <div class="item-thumbnail item-thumbnail-icon ">
+                                            <i class="mdi mdi-email-outline "></i>
+                                        </div>
+                                        <div class="item-content d-flex align-items-start flex-column justify-content-center ">
+                                            <h6 class="item-subject font-weight-normal ">You received a new message</h6>
+                                            <small class="text-muted "> 6 min ago </small>
+                                        </div>
+                                    </li>
+
+                                    <li class="mdc-list-item " role="menuitem ">
+                                        <div class="item-thumbnail item-thumbnail-icon ">
+                                            <i class="mdi mdi-alert-circle-outline "></i>
+                                        </div>
+                                        <div class="item-content d-flex align-items-start flex-column justify-content-center ">
+                                            <h6 class="item-subject font-weight-normal ">System Alert</h6>
+                                            <small class="text-muted "> 2 days ago </small>
+                                        </div>
+                                    </li>
+                                    <li class="mdc-list-item " role="menuitem ">
+                                        <div class="item-thumbnail item-thumbnail-icon ">
+                                            <i class="mdi mdi-update "></i>
+                                        </div>
+                                        <div class="item-content d-flex align-items-start flex-column justify-content-center ">
+                                            <h6 class="item-subject font-weight-normal ">You have a new update</h6>
+                                            <small class="text-muted "> 3 days ago </small>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="menu-button-container d-none d-md-block ">
+                            <a href="{% url 'sendmail' %} ">
+                                <button class="mdc-button mdc-menu-button ">
+                                    <i class="mdi mdi-email-outline"></i>
+                                </button>
+                            </a>
+                            <!-- <button class="mdc-button mdc-menu-button ">
+                                <i class="mdi mdi-arrow-down-bold-box "></i>
+                            </button>
+                            <div class="mdc-menu mdc-menu-surface " tabindex="-1 ">
+                                <ul class="mdc-list " role="menu " aria-hidden="true " aria-orientation="vertical ">
+                                    <li class="mdc-list-item " role="menuitem ">
+                                        <div class="item-thumbnail item-thumbnail-icon-only ">
+                                            <i class="mdi mdi-lock-outline text-primary "></i>
+                                        </div>
+                                        <div class="item-content d-flex align-items-start flex-column justify-content-center ">
+                                            <h6 class="item-subject font-weight-normal ">Lock screen</h6>
+                                        </div>
+                                    </li>
+                                    <li class="mdc-list-item " role="menuitem ">
+                                        <div class="item-thumbnail item-thumbnail-icon-only ">
+                                            <i class="mdi mdi-logout-variant text-primary "></i>
+                                        </div>
+                                        <div class="item-content d-flex align-items-start flex-column justify-content-center ">
+                                            <a href="{% url 'logoutProfile' %} ">
+                                                <h6 class="item-subject font-weight-normal ">Logout</h6>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div> -->
+                        </div>
+
+                    </div>
+                    <!-- Area inside the title /search bar area -->
+                </div>
+
+
+
+
+
+            </header>
+            <div class="page-wrapper mdc-toolbar-fixed-adjust ">
+                <main class="content-wrapper ">
+                    {% block content %} {% endblock %} {% block content1 %} {% endblock %}
+                </main>
+                <footer>
+                    <div class="mdc-layout-grid ">
+                        <div class="mdc-layout-grid__inner ">
+                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop ">
+                                <span class="text-center text-sm-left d-block d-sm-inline-block tx-14 ">Copyright © <a
+                                    href="# " target="_blank ">Team - 4 </a></span>
+                            </div>
+                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop d-flex justify-content-end ">
+                                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center tx-14 ">By <a
+                                    href="# " target="_blank "> Team - 4 admin </a></span>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+                <!-- partial -->
+
+            </div>
+
+        </div>
+
+        <!-- partial -->
+
+
+        <!-- plugins:js -->
+        <script src="templates/assets/vendors/js/vendor.bundle.base.js "></script>
+        <!-- endinject -->
+        <!-- Plugin js for this page-->
+        <script src="templates/assets/vendors/chartjs/Chart.min.js "></script>
+        <script src="templates/assets/vendors/jvectormap/jquery-jvectormap.min.js "></script>
+        <script src="templates/assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js "></script>
+        <!-- End plugin js for this page-->
+        <!-- inject:js -->
+        <script src="templates/assets/js/material.js "></script>
+        <script src="templates/assets/js/misc.js "></script>
+        <!-- endinject -->
+        <!-- Custom js for this page-->
+        <script src="templates/assets/js/dashboard.js "></script>
+        <!-- End custom js for this page-->
+        <script>
+           
+            var ctx = document.getElementById('myChart').getContext('2d');
+            // var labledata = ['sun', "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+            var labledata = ['{{day7}}','{{day6}}','{{day5}}','{{day4}}','{{day3}}','{{day2}}','{{day1}}']
+            // var defaultdata = [170, 195, 290, 320, 400, 100, 290]
+            var defaultdata = ['{{tcount7}}','{{tcount6}}','{{tcount5}}','{{tcount4}}','{{tcount3}}','{{tcount2}}','{{tcount1}}']
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labledata,
+                    datasets: [{
+                        label: '# of Ticket',
+                        data: defaultdata,
+                        // data: defaultdata,
+                        backgroundColor: ["rgba(255, 86, 48, 0.3)", "rgba(255, 86, 48, 0.3)", "rgba(255, 86, 48, 0.3)", "rgba(255, 86, 48, 0.3)", "rgba(255, 86, 48, 0.3)", "rgba(255, 86, 48, 0.3)","rgb(255, 86, 48)"],
+                        // borderColor: ['rgba(255, 99, 132, 1)',
+                        //     'rgba(54, 162, 235, 1)',
+                        //     'rgba(255, 206,86, 1)',
+                        //     'rgba(75, 192, 192, 1)',
+                        //     'rgba(153, 102, 255, 1) ',
+                        //     'rgba(255, 159, 64, 1)'
+                        // ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        yAxes: [{
+                            gridLines: {
+                                drawBorder: false,
+                                zeroLineColor: "rgba(0, 0, 0, 0.09)",
+                                color: "rgba(0, 0, 0, 0.09)"
+                            },
+                            ticks: {
+                                fontColor: '#bababa',
+                                min: 0,
+                                stepSize: 100,
+                            }
+                        }],
+                        xAxes: [{
+                            ticks: {
+                                fontColor: '#bababa',
+                                beginAtZero: true
+                            },
+                            gridLines: {
+                                display: false,
+                                drawBorder: false
+                            },
+                            barPercentage: 0.4
+                        }]
+                    },
+                    legend: {
+                        display: false
+                    }
+                }
+            });
+            // //Endfor ticketchart
+
+
+            if ($("#chart-sales").length) {
+                var salesChartCanvas = $("#chart-sales").get(0).getContext("2d");
+                var defaultdata = ['{{no_of_webform}}', '{{no_of_email}}', '{{no_of_socialmedia}}']
+                var salesChart = new Chart(salesChartCanvas, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ["Web-form", "Email", "Social-Media"],
+                        datasets: [{
+                            label: 'My First Dataset',
+                            data: defaultdata,
+                            backgroundColor: [
+                                'rgb(255, 99, 132)',
+                                'rgb(54, 162, 235)',
+                                'rgb(255, 205, 86)'
+                            ],
+                            hoverOffset: 4
+                        }]
+                    }
+                })
+            };
+            //End of Traffic graph
+            var ctx = document.getElementById('Average_Ticket_Replay_time').getContext('2d');
+            var defaultdata = ['{{avg_responce_time}}', '{{avg_resolve_time}}']
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ["Response", "Resolved"],
+                    datasets: [{
+                        axis: 'y',
+                        // data: [65, 39],
+                        data: defaultdata,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(255, 205, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(201, 203, 207, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgb(255, 99, 132)',
+                            'rgb(255, 159, 64)',
+                            'rgb(255, 205, 86)',
+                            'rgb(75, 192, 192)',
+                            'rgb(54, 162, 235)',
+                            'rgb(153, 102, 255)',
+                            'rgb(201, 203, 207)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        yAxes: [{
+                            gridLines: {
+                                drawBorder: false,
+                                zeroLineColor: "rgba(0, 0, 0, 0.09)",
+                                color: "rgba(0, 0, 0, 0.09)"
+                            },
+                            ticks: {
+                                fontColor: '#bababa',
+                                min: 0,
+                                // stepSize: 100,
+                            }
+                        }],
+                        xAxes: [{
+                            ticks: {
+                                fontColor: '#bababa',
+                                beginAtZero: true
+                            },
+                            gridLines: {
+                                display: false,
+                                drawBorder: false
+                            },
+                            barPercentage: 0.4
+                        }]
+                    },
+                    legend: {
+                        display: false
+                    }
+                }
+            });
+            //End ofresponce chart
+            var ctx = document.getElementById('Customer_Rating').getContext('2d');
+            var defaultdata = ['{{happy}}', '{{ok}}', '{{unhappy}}']
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ["Happy", "Okay", "UnHappy"],
+                    datasets: [{
+                        axis: 'y',
+
+                        // data: [65, 49, 20], //actal date need to display
+                        data: defaultdata,
+                        backgroundColor: [
+                            // 'rgba(255, 99, 132, 1)',
+                            // 'rgba(255, 159, 64, 1)',
+                            // 'rgba(255, 205, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(153, 102, 255, 0.6)',
+                            'rgba(201, 203, 207, 0.2)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        yAxes: [{
+                            gridLines: {
+                                drawBorder: false,
+                                zeroLineColor: "rgba(0, 0, 0, 0.09)",
+                                color: "rgba(0, 0, 0, 0.09)"
+                            },
+                            ticks: {
+                                fontColor: '#bababa',
+                                min: 0,
+                                // stepSize: 100,
+                            }
+                        }],
+                        xAxes: [{
+                            ticks: {
+                                fontColor: '#bababa',
+                                beginAtZero: true
+                            },
+                            gridLines: {
+                                display: false,
+                                drawBorder: false
+                            },
+                            barPercentage: 0.7 //use for the thickness of bar
+                        }]
+                    },
+                    legend: {
+                        display: false
+                    }
+                }
+            });
+        </script>
+</body>
+
+</html>

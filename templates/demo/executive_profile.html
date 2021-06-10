@@ -1,0 +1,533 @@
+{% extends "main.html" %}{% block content %}
+
+<body>
+    <!-- {% for i in executive_data %} -->
+    <link rel="stylesheet" href="templates/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="templates/assets/vendors/css/vendor.bundle.base.css">
+
+    <link rel="stylesheet" href="templates/assets/css/demo/style.css">
+
+    <link rel="shortcut icon" href="templates/assets/images/favicon.png" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+        body {
+            background: #eee;
+        }
+        
+        .page-inner.no-page-title {
+            padding-top: 30px;
+        }
+        
+        .page-inner {
+            position: relative;
+            min-height: calc(100% - 56px);
+            padding: 20px 30px 40px 30px;
+            background: #f3f4f7;
+        }
+        
+        .card.card-white {
+            background-color: #fff;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            box-shadow: 0 0.05rem 0.01rem rgba(75, 75, 90, 0.075);
+            padding: 25px;
+        }
+        
+        .grid-margin {
+            margin-bottom: 2rem;
+        }
+        
+        .profile-timeline ul li .timeline-item-header {
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .profile-timeline ul li .timeline-item-header img {
+            width: 40px;
+            height: 40px;
+            float: left;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+        
+        .profile-timeline ul li .timeline-item-header p {
+            margin: 0;
+            color: #000;
+            font-weight: 500;
+        }
+        
+        .profile-timeline ul li .timeline-item-header p span {
+            margin: 0;
+            color: #8e8e8e;
+            font-weight: normal;
+        }
+        
+        .profile-timeline ul li .timeline-item-header small {
+            margin: 0;
+            color: #8e8e8e;
+        }
+        
+        .profile-timeline ul li .timeline-item-post {
+            padding: 20px 0 0 0;
+            position: relative;
+        }
+        
+        .profile-timeline ul li .timeline-item-post>img {
+            width: 100%;
+        }
+        
+        .timeline-options {
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #f1f1f1;
+            padding: 10px 0 10px 0;
+        }
+        
+        .timeline-options a {
+            display: block;
+            margin-right: 20px;
+            float: left;
+            color: #2b2b2b;
+            text-decoration: none;
+        }
+        
+        .timeline-options a i {
+            margin-right: 3px;
+        }
+        
+        .timeline-options a:hover {
+            color: #5369f8;
+        }
+        
+        .timeline-comment {
+            overflow: hidden;
+            margin-bottom: 10px;
+            width: 100%;
+            border-bottom: 1px solid #f1f1f1;
+            padding-bottom: 5px;
+        }
+        
+        .timeline-comment .timeline-comment-header {
+            overflow: hidden;
+        }
+        
+        .timeline-comment .timeline-comment-header img {
+            width: 30px;
+            border-radius: 50%;
+            float: left;
+            margin-right: 10px;
+        }
+        
+        .timeline-comment .timeline-comment-header p {
+            color: #000;
+            float: left;
+            margin: 0;
+            font-weight: 500;
+        }
+        
+        .timeline-comment .timeline-comment-header small {
+            font-weight: normal;
+            color: #8e8e8e;
+        }
+        
+        .timeline-comment p.timeline-comment-text {
+            display: block;
+            color: #2b2b2b;
+            font-size: 14px;
+            padding-left: 40px;
+        }
+        
+        .post-options {
+            overflow: hidden;
+            margin-top: 15px;
+            margin-left: 15px;
+        }
+        
+        .post-options a {
+            display: block;
+            margin-top: 5px;
+            margin-right: 20px;
+            float: left;
+            color: #2b2b2b;
+            text-decoration: none;
+            font-size: 16px !important;
+        }
+        
+        .post-options a:hover {
+            color: #5369f8;
+        }
+        
+        .online {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            display: block;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #ccc;
+        }
+        
+        .online.on {
+            background: #2ec5d3;
+        }
+        
+        .online.off {
+            background: #ec5e69;
+        }
+        
+        #cd-timeline::before {
+            border: 0;
+            background: #f1f1f1;
+        }
+        
+        .cd-timeline-content p,
+        .cd-timeline-content .cd-read-more,
+        .cd-timeline-content .cd-date {
+            font-size: 14px;
+        }
+        
+        .cd-timeline-img.cd-success {
+            background: #2ec5d3;
+        }
+        
+        .cd-timeline-img.cd-danger {
+            background: #ec5e69;
+        }
+        
+        .cd-timeline-img.cd-info {
+            background: #5893df;
+        }
+        
+        .cd-timeline-img.cd-warning {
+            background: #f1c205;
+        }
+        
+        .cd-timeline-img.cd-primary {
+            background: #9f7ce1;
+        }
+        
+        .page-inner.full-page {
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+        }
+        
+        .user-profile-card {
+            text-align: center;
+        }
+        
+        .user-profile-image {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+        
+        .team .team-member {
+            display: block;
+            overflow: hidden;
+            margin-bottom: 10px;
+            float: left;
+            position: relative;
+        }
+        
+        .team .team-member .online {
+            top: 5px;
+            right: 5px;
+        }
+        
+        .team .team-member img {
+            width: 40px;
+            float: left;
+            border-radius: 50%;
+            margin: 0 5px 0 5px;
+        }
+        
+        .label.label-success {
+            background: #43d39e;
+        }
+        
+        .label {
+            font-weight: 400;
+            padding: 4px 8px;
+            font-size: 11px;
+            display: inline-block;
+            line-height: 1;
+            color: #fff;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: 0.25em;
+        }
+    </style>
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+
+
+    <!-- start page main wrapper -->
+
+
+    {% for i in executive_data %}
+
+    <div style="box-shadow: 0 0 20px rgba(0,0,0,0.4);" class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop ">
+        <div class="card card-white grid-margin">
+            <div class="card-heading clearfix">
+                <h4 class="card-title text-center">User Profile</h4>
+            </div>
+
+            <div class="card-body user-profile-card">
+                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="user-profile-image rounded-circle" alt="" />
+                <h4 class="text-center h6 mt-2">{{i.executive_name}}{% endfor %}</h4>
+
+            </div>
+            <!-- <div class="item-thumbnail item-thumbnail-icon-only ">
+
+                                </div> -->
+
+            <!-- <div class="card item-content d-flex align-items-start flex-column justify-content-center text-center ">
+
+                                    <button class="btn"><i class="mdi mdi-account-edit-outline  item-subject font-weight-normal text-center"> <a href="#">Edit</a></i></button>
+
+                                    
+                            </div> -->
+
+        </div>
+    </div>
+    <div style="box-shadow: 0 0 20px rgba(0,0,0,0.4);" class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8-desktop">
+
+        <div class="card card-white grid-margin">
+            <div class="card-body">
+                <div class="card-heading clearfix">
+                    <h4 class="card-title text-center">Executive Detail</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-borderless mb-0 text-muted">
+                            <tbody>
+                                <!-- <tr>
+                                                <th scope="row">Employer ID:</th>
+                                                <td># {{i.executive_id}}</td>
+                                            </tr> -->
+
+                                <tr>
+                                    <th scope="row">Level:</th>
+                                    <td>{{i.executive_level}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Department:</th>
+                                    <td>{{i.executive_dep}}
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">Email:</th>
+                                    <td>{{i.executive_email}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Phone:</th>
+                                    <td>{{i.executive_contact}}</td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">Executive Pass:</th>
+                                    <td>{{i.executive_pass}} </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Executive Status:</th>
+                                    <td>{{i.executive_status}} </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="card-heading clearfix mt-3">
+        <h4 class="card-title text-center text-dark text-justify">Performance Graph</h4>
+    </div>
+
+    <div class="mdc-layout-grid__inner">
+        <div style="box-shadow: 0 0 20px rgba(0,0,0,0.4);" class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop">
+            <div class="mdc-card">
+                <h6 class="card-title">Ticket Stats</h6>
+                <canvas id="lineChart"></canvas>
+            </div>
+        </div>
+        <div style="box-shadow: 0 0 20px rgba(0,0,0,0.4);" class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop">
+            <div class="mdc-card">
+                <h6 class="card-title">Average Ticket Reply Time</h6>
+                <!-- <canvas id="barChart"></canvas> -->
+                <canvas id="Customer_Rating"></canvas>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- graps code  -->
+
+
+
+
+
+    </div>
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    </script>
+
+    <!-- plugins:js -->
+    <script src="templates/assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <script src="templates/assets/vendors/chartjs/Chart.min.js"></script>
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="templates/assets/js/material.js"></script>
+    <script src="templates/assets/js/misc.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <!-- <script src="templates/assets/js/chartjs.js"></script> -->
+    {% for i in executive_data %}
+    <script>
+        // chart for Average Ticket Reply Time 
+        var ctx = document.getElementById('Customer_Rating').getContext('2d');
+        var defaultdata = ['{{i.avg_resolution}}', '{{i.avg_response}}']
+            // var defaultdata = [2, 20, 1]
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["avg_resolution", "avg_response"],
+                datasets: [{
+                    axis: 'y',
+
+                    // data: [65, 49, 20], //actal date need to display
+                    data: defaultdata,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        // 'rgba(255, 205, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(201, 203, 207, 0.2)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: true,
+                scales: {
+                    yAxes: [{
+                        gridLines: {
+                            drawBorder: false,
+                            zeroLineColor: "rgba(0, 0, 0, 0.09)",
+                            color: "rgba(0, 0, 0, 0.09)"
+                        },
+                        ticks: {
+                            fontColor: '#bababa',
+                            min: 0,
+                            stepSize: 100,
+                        }
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            fontColor: '#bababa',
+                            beginAtZero: true
+                        },
+                        gridLines: {
+                            display: false,
+                            drawBorder: false
+                        },
+                        barPercentage: 0.5 //use for the thickness of bar
+                    }]
+                },
+                legend: {
+                    display: false
+                }
+            }
+        });
+
+
+        // chart for Ticket Stats 
+        var ctx1 = document.getElementById('lineChart').getContext('2d');
+        var defaultdata = ['{{i.assigned}}', '{{i.resolved}}']
+            // var defaultdata = [2, 20, 1]
+        var myChart = new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ["assigned", "resolved"],
+                datasets: [{
+                    axis: 'y',
+
+                    // data: [65, 49, 20], //actal date need to display
+                    data: defaultdata,
+                    backgroundColor: [
+                        // 'rgba(255, 99, 132, 1)',
+                        // 'rgba(255, 159, 64, 1)',
+                        // 'rgba(255, 205, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(201, 203, 207, 0.2)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        // beginAtZero: true
+                    }
+                },
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: true,
+                scales: {
+                    yAxes: [{
+                        gridLines: {
+                            drawBorder: false,
+                            zeroLineColor: "rgba(0, 0, 0, 0.09)",
+                            color: "rgba(0, 0, 0, 0.09)"
+                        },
+                        ticks: {
+                            fontColor: '#bababa',
+                            min: 0,
+                            stepSize: 100,
+                        }
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            fontColor: '#bababa',
+                            beginAtZero: true
+                        },
+                        gridLines: {
+                            display: false,
+                            drawBorder: false
+                        },
+                        barPercentage: 0.5 //use for the thickness of bar
+                    }]
+                },
+                legend: {
+                    display: false
+                }
+            }
+        });
+    </script>
+    {% endfor %}
+</body>
+{% endblock %}

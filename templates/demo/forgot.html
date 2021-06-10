@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: honeydew;
+        }
+        
+        .form-container {
+            display: flex;
+            height: 98vh;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        
+        .form-container .form-wrap {
+            background-color: #7a00ff;
+            width: 380px;
+            height: auto;
+            position: relative;
+            margin: 2% auto;
+            margin-top: -30px;
+            border: 3px solid gray;
+            border-radius: 10px;
+            padding: 20px;
+            padding-right: 30px;
+            overflow: hidden;
+        }
+
+        .form-container .form-wrap .submit-btn input[type="submit"] {
+            width: 30%;
+            padding: 10px 30px;
+            margin: 15px;
+            cursor: pointer;
+            display: block;
+            margin: auto;
+            background: #ACDF87;
+            border: 20%;
+            outline: none;
+            border-radius: 30px;
+            box-shadow: 0 0 2px 0.9px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .form-container .form-wrap h2 {
+            text-align: center;
+            margin: 10px 10px 20px;
+            font-size: 19px;
+        }
+        
+        .form-container .form-wrap .form-box {
+            margin: 10px 10px 25px;
+        }
+        
+        .form-container .form-wrap .form-box input[type="text"] {
+            padding: 10px 10px;
+            border-radius: 3px;
+            border: 1px solid #353535;
+            width: 106%;
+        }
+        
+        .form-container .form-wrap .form-submit {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .dropbtn {
+            width: 100%;
+            background-color: white;
+            color: gray;
+            padding: 10px 10px;
+            border: 1px solid #353535;
+            border-radius: 3px;
+            margin-left: 10px;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <div class="form-container">
+        <form action="#" method="POST" class="form-wrap">
+            <h2>Forgot Password</h2>
+            <div class="form-box">
+                <label> Enter Email:</label>
+                <input type="text" placeholder="Enter Email" />
+            </div>
+
+            <div class="input_wrap">
+                <label>Security Question:</label>
+                <select class="dropbtn" name="securityquestion" required>
+                 <option class="0">Select</option>
+                 <option class="1">your first school`s name</option>
+                 <option class="2">your pet`s name</option>
+                 <option class="3">your favorite teacher`s name</option>
+                 <option class="4">your favorite food</option>
+                 <option class="5">your favorite sport</option>
+                 </select>
+            </div>
+            <div class="form-box">
+                <label> Answer:</label>
+                <input type="text" placeholder="Answer" />
+            </div>
+
+            <div class='submit-btn'>
+                <input type="submit" value="Submit" />
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>

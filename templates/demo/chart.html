@@ -1,0 +1,44 @@
+ {% load static %} {% block title %}clubs ranking{% endblock title %} {% block scripts %}
+<script>
+    $(document).ready(function() {
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: [{ %
+                        for item in qs %
+                    }
+                    '{{item.channel_name}}', { % endfor %
+                    }
+                ],
+                datasets: [{
+                    label: '# of Votes',
+
+                    backgroundColor: [
+                        "red", "green", "yellow", "orange",
+                        "lime", "violet"
+                    ],
+                    borderColor: "#417690",
+                    data: [{ %
+                        for item in qs %
+                    } {
+                        {
+                            item.total_query
+                        }
+                    }, { % endfor %
+                    }],
+                }]
+            },
+            options: {
+                title: {
+                    text: "",
+                    display: true
+                }
+            }
+        });
+
+    });
+</script>
+
+{% endblock scripts %} {% block content %}
+<canvas id="myChart" width="20" height="20"></canvas> {% endblock content %}
