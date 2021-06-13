@@ -376,9 +376,13 @@
                     <div class="grid-body">
                         <h2>Filtered Ticket by Executive</h2>
 
-                        
 
                         
+
+                        <!-- BEGIN NEW TICKET -->
+                        
+                        <!-- END NEW TICKET -->
+
                         <div class="padding"></div>
 
                         <div class="row">
@@ -394,15 +398,15 @@
                                             <i class="fa fa-file-o pull-left"></i>
                                             <div class="media-body">
                                                 <strong>{{i.title}}</strong>
-                                                {% if i.ticket_priority.id == 3 %}
+                                                {% if i.ticket_priority.priority == "Low" %}
                                                 <span class="label label-info">Low</span>
-                                                {% elif i.ticket_priority.id == 2 %}
+                                                {% elif i.ticket_priority.priority == "Medium" %}
                                                 <span class="label label-warning">Medium</span> 
-                                                {% elif i.ticket_priority.id == 1 %}
+                                                {% elif i.ticket_priority.priority == "High" %}
                                                 <span class="label label-danger">High</span> 
                                                 {% endif %}
                                                 <span class="number pull-right"># {{i.id}}</span>
-                                                <p class="info">Opened by <a href="#"><b>{{i.assigned_to.executive_name}}</b></a> <a href="#"> Created on <b>{{i.created_on|date}}</b></a></p>
+                                                <p class="info">Opened by <a href="#"><b>{{i.assigned_to.executive_name}}</b></a> <a href="#"> Created on <b>{{i.created_on|date}}</b> </a></p>
                                             </div>
                                         </div>
                                     </li>
