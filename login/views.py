@@ -7,37 +7,33 @@ from login.models import Executive
 from django.contrib.auth import authenticate,login,logout
 from ticketinbox.models import Ticket
 from django.contrib.auth.forms import AuthenticationForm
-
-
-
-
+from django.contrib.auth.models import User
 
 
 def register(request):
-    form = CreateExecutiveForm()
-    executive =  Executive() 
+    form = User()
+    executive=Executive()
     if request.method == 'POST':
-        form = CreateExecutiveForm(request.POST)
-        # executive =  Executive()
-        if form.is_valid():
-            
-            messages.success(request, 'Account Created Successfully !! : ')
-            # name=request.POST.get('name')
-            # fname = request.POST.get("first_name")
-            # lname = request.POST.get("last_name")
-            uname = request.POST.get("username")
-            email = request.POST.get("email")
-
-            # executive.executive_name=str(fname)+str(lname)
-            # executive.executive_name=fname
-            executive.executive_username=uname
-            executive.executive_email=email
-
-            form.save()
-            print(uname,email)
-            executive.save()
-        else:
-            form = CreateExecutiveForm()
+        
+        messages.success(request, 'Account Created Successfully !! : ')
+        # name=request.POST.get('name')
+        fname = request.POST.get("first_name")
+        lname = request.POST.get("last_name")
+        username = request.POST.get("username")
+        email = request.POST.get("email")
+        password = request.POST.get("password")
+        print(username)
+        name=fname+" "+lname
+        #print(name)
+        #executive.executive_name=str(fname)+str(lname)
+        executive.executive_name=name
+        executive.executive_username=username
+        executive.executive_email=email
+        form=User.objects.create_user(username=username, email=email, password=password)
+        
+        form.save()
+        executive.id=110
+        executive.save()
 
            # user = form.cleaned_data.get('email')
            
@@ -73,15 +69,7 @@ def loginPage(request):
                         
                    
                         
-        # fm={}
-        # return render(request, 'login.html', {'form': fm})
-                    # return HttpResponseRedirect('/dashboard/')
-        # else:
-        #     fm = AuthenticationForm()
-        #     messages.info(request, 'Username or Password is Incorrect')
-        #     return render(request, 'login.html', {'form': fm})
-    #else:
-       # return HttpResponseRedirect('')
+        
 
 
 #logout

@@ -27,6 +27,7 @@ def info(request):
             fail_silently=False,
         )
         return render(request,'infosend.html')
+
     return render(request, 'alert.html')
 
 # def infosend(request):
