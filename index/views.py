@@ -143,11 +143,11 @@ def sendmail(request):
     from django.template.loader import render_to_string
    
     server = e.connect(host, user, password)
-    for i in server.listids(limit=1): #listids use for updated emails
+    for i in server.listids(limit=3): #listids use for updated emails
         emaill=server.mail(i)
         eid = emaill.from_addr
         print(eid)
-        p = eid.split('<')[0]
+        p = eid.split('<')[1]
         print(p)
         emailid = p.split('>')[0]
         print(emailid)
