@@ -460,7 +460,7 @@
   <div class="container">
     <div class="forms-container">
       <div class="signin-signup">
-        <form method="POST" class="sign-in-form">
+        <form method="POST" action="{% url 'loginPage' %}" class="sign-in-form">
           {% csrf_token %} {% comment %} {% for fm in form %} {% endcomment %}
           <h2 class="title">Sign in</h2>
           
@@ -526,7 +526,7 @@
           </div>
           <div class="input-field">
             <i class="fas fa-eye"></i>
-            <input type="text" name="password" class='{{form.password2}}' placeholder="Confirm Password" />
+            <input type="password" name="password" class='{{form.password2}}' placeholder="Confirm Password" />
           </div>
           <!-- <input href="{% url 'register' %}" type="submit" class="btn" value="Sign Up"/> -->
           <!-- <input type="submit" class="btn" value="Sign Up"/> -->
